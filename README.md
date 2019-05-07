@@ -2,13 +2,15 @@
 Test Assignment for Group 10
 
 ## Table of Contents
-1. [User-Stories](## User-stories)
+1. [User-Stories](##User-stories)
 
-2. [Discussion](## Discussion)
+2. [Discussion](##Discussion)
 
-i)  [Language](### Language)
+i)  [Language](###Language)
 
-ii) [Process](### Process)
+ii) [Database](###Database)
+
+iii) [Process](###Process)
 
 
 ## User-stories
@@ -90,6 +92,13 @@ We started development of our system with a backend API with a combination of TD
 
 We used Java Maven for our backend API supported by Cucumber and JUNIT for testing.
 For our frontend we used Javascript with a REACTJS framework supported by Selenium for our tests. 
+
+### Database
+
+Database was done in MYSQL using Hibernate
+
+![alt text](https://github.com/FarkIst/TestSemesterProject/blob/master/SYS_DB.png)
+
 
 ### Plan for 13/5
 
