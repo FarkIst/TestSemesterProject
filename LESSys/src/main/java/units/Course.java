@@ -97,7 +97,6 @@ public class Course implements Serializable {
         return 0;
     }
 
-
     public Set<Semester> getSemesterCourses() {
         return semesterCourses;
     }

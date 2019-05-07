@@ -9,6 +9,14 @@
         <class>units.Payment</class>
         <class>units.Semester</class>
         <class>units.Subject</class>
+        <class>units.Location</class>
+        <class>units.School</class>
+        <class>units.Schedule</class>
+        <class>units.NonTeachingStaff</class>
+        <class>units.TeachingStaff</class>
+        <class>units.Staff</class>
+        <class>units.Room</class>
+        <class>units.Student</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/less"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>

@@ -22,7 +22,6 @@ public class Subject implements Serializable {
     )
     private List<Course> courses = new ArrayList<Course>();
 
-
     public int getId() {
         return id;
     }

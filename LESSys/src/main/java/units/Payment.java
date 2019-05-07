@@ -28,7 +28,6 @@ public class Payment implements Serializable {
 
     public Payment(){}
 
-
     public int getId() {
         return id;
     }
