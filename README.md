@@ -6,16 +6,16 @@ Test Assignment for Group 10
 
 2. [Discussion](##Discussion)
 
-i)  [Language](###Language)
+[Language](###Language)
 
-ii) [Database](###Database)
+[Database](###Database)
 
-iii) [Process](###Process)
+[Process](###Process)
 
 
-## User-stories
+##User-stories
 
-#### Administration
+####Administration
 
 * As an administrator I want to be able to register courses to the school, so that I can ensure they are appropriate
 
@@ -49,7 +49,7 @@ iii) [Process](###Process)
 
 * As an administrator I want to be able to keep track of potential teachers information, so that they can be registered in the teachers register if they are suitable
 
-#### School Committee 
+####School Committee 
 
 * As a member of the school-committee I want to be able to keep track of the teaching hours of teachers, so that I am sure that teachers in the school committee have all taught over 20 hours and are experienced
 
@@ -59,19 +59,19 @@ iii) [Process](###Process)
 
 * As a member of the school-committee I want to ensure that subjects that are suggested are over 20 hours, so that subjects are worth the administrative effort put into them
 
-#### Student
+####Student
 
 * As a student I want to be able to enroll in a course, so that I can hopefully participate in the class should the class become popular enough to be registered
 
 * As a student I want to be able to see a list of available courses with their information, so that I can decide whether I wish to enroll in one of them
 
-#### Teacher
+####Teacher
 
 * As a teacher I want to be able to apply for a teaching position in a course, so that I can possibly get a teaching position.
 
 * As a teacher I want to be able to signup for a course should I be deemed as suitable by the administration, so that I can teach at the school
 
-#### General
+####General
 
 * As a user I want to be able to log in, so that I can perform tasks and check information that are user specific
 
@@ -82,23 +82,35 @@ iii) [Process](###Process)
 * As an administrator // teacher?? I want to keep track of how many students are enrolled in a specific course so that I know if there are 9 enrolled students and the course can being their meetings and whether 12 participants are enrolled by the third meeting and if the course is to be taught at the school
 
 
-## Discussion
+##Discussion
 
-### Process
+###Process
 
 We started development of our system with a backend API with a combination of TDD with JUNIT as our supporting test tool. We first converted the assignment instructions into a list of user-stories, which could more easily be interpreted and developed into code. We then converted these user-stories into BDD Cucumber scenarios, which generated our feature step-definitions which could then be filled with JUNIT code. 
 
-### Language
+###Language
 
 We used Java Maven for our backend API supported by Cucumber and JUNIT for testing.
 For our frontend we used Javascript with a REACTJS framework supported by Selenium for our tests. 
 
-### Database
+###Database
 
 Database was done in MYSQL using Hibernate
 
 ![alt text](https://github.com/FarkIst/TestSemesterProject/blob/master/SYS_DB.png)
 
+#### Some notes
+
+* Location table is synonymous with address
+* Schedule is a period of time
+* A course is a lesson, and a subject is the topic. (FX. Subject: Computer-science -> 
+Course: classSem1B)
+* Schedule is what a lot of relationships in the database are built around.
+A schedule will have a relationship with a room(room has many schedules) and a schedule will have a course.
+
+#### To be fixed in the future
+
+* Add a relationship between semester and schedule
 
 ### Plan for 13/5
 
