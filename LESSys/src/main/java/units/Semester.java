@@ -2,6 +2,7 @@ package units;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
 
@@ -16,10 +17,10 @@ public class Semester implements Serializable {
     private SemesterTypes type;
 
     @Temporal(TemporalType.DATE)
-    private Date semester_start;
+    private Calendar semester_start;
 
     @Temporal(TemporalType.DATE)
-    private Date semester_end;
+    private Calendar semester_end;
 
     @ManyToMany(mappedBy = "semesterCourses")
     private
@@ -41,19 +42,19 @@ public class Semester implements Serializable {
         this.type = type;
     }
 
-    public Date getSemester_start() {
+    public Calendar getSemester_start() {
         return semester_start;
     }
 
-    public void setSemester_start(Date semester_start) {
+    public void setSemester_start(Calendar semester_start) {
         this.semester_start = semester_start;
     }
 
-    public Date getSemester_end() {
+    public Calendar getSemester_end() {
         return semester_end;
     }
 
-    public void setSemester_end(Date semester_end) {
+    public void setSemester_end(Calendar semester_end) {
         this.semester_end = semester_end;
     }
 
@@ -65,7 +66,7 @@ public class Semester implements Serializable {
         this.semesterCourses = semesterCourses;
     }
 
-    public Date getTwoMonthsBeforeNextSemStart(){
+    public Calendar getTwoMonthsBeforeNextSemStart(){
         return null;
     }
 }

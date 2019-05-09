@@ -3,7 +3,7 @@ package units;
 import javax.persistence.*;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 
 @Entity
 @Table
@@ -24,7 +24,7 @@ public class Payment implements Serializable {
 
     private Double payment_amt;
 
-    private Date date;
+    private Calendar date;
 
     public Payment(){}
 
@@ -60,11 +60,11 @@ public class Payment implements Serializable {
         this.payment_amt = payment_amt;
     }
 
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
 }

@@ -46,9 +46,17 @@ public class Course implements Serializable {
     )
     private List<Payment> coursePayments = new ArrayList<Payment>();
 
+    @OneToMany(
+            mappedBy = "course",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Schedule> courseSchedules = new ArrayList<Schedule>();
+
+
     public Course(){}
     public Course(int id){
-        this.id = id;
+        this.setId(id);
     }
 
     public int getId() {
@@ -84,12 +92,12 @@ public class Course implements Serializable {
     }
 
     public void addCoursePayment(Payment payment) {
-        coursePayments.add(payment);
+        getCoursePayments().add(payment);
         payment.setCourse(this);
     }
 
     public void removeCoursePayment(Payment payment) {
-        coursePayments.remove(payment);
+        getCoursePayments().remove(payment);
         payment.setCourse(null);
     }
 
@@ -105,9 +113,10 @@ public class Course implements Serializable {
         this.semesterCourses = semesterCourses;
     }
 
-    public boolean hasRunOver3Years() {return false;}
-
-    public Boolean isOver20Hours() { return false; }
+    public Boolean isOver20TeachingHours() {
+        if (this.teachingHours < 20) return false;
+        return true;
+    }
 
     public Subject getSubject() {
         return subject;
@@ -115,5 +124,40 @@ public class Course implements Serializable {
 
     public void setSubject(Subject subject) {
         this.subject = subject;
+    }
+
+
+    public List<Schedule> getCourseSchedules() {
+        return courseSchedules;
+    }
+
+    public void setCourseSchedules(List<Schedule> courseSchedules) {
+        this.courseSchedules = courseSchedules;
+    }
+
+    public void addSchedule(Schedule schedule) {
+        getCourseSchedules().add(schedule);
+        schedule.setCourse(this);
+    }
+
+    public void removeSchedule(Schedule schedule) {
+        getCourseSchedules().remove(schedule);
+        schedule.setCourse(null);
+    }
+
+    public int getTeachingHours() {
+        return teachingHours;
+    }
+
+    public void setTeachingHours(int teachingHours) {
+        this.teachingHours = teachingHours;
+    }
+
+    public List<Payment> getCoursePayments() {
+        return coursePayments;
+    }
+
+    public void setCoursePayments(List<Payment> coursePayments) {
+        this.coursePayments = coursePayments;
     }
 }

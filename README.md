@@ -103,6 +103,7 @@ Database was done in MYSQL using Hibernate
 
 * Location table is synonymous with address
 * Schedule is a period of time
+* There are multiple 'User' types: Student, Teacher etc.
 * A course is a lesson, and a subject is the topic. (FX. Subject: Computer-science -> 
 Course: classSem1B)
 * Schedule is what a lot of relationships in the database are built around.

@@ -1,7 +1,7 @@
 package units;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.*;
 import javax.persistence.OneToMany;
@@ -52,7 +52,7 @@ public class TeachingStaff extends Staff{
         this.qualifications = qualifications;
     }
 
-    public Date dateSinceLastTeachingPosition(){
+    public Calendar dateSinceLastTeachingPosition(){
         return null;
     }
 

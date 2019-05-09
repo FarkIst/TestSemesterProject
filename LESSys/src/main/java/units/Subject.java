@@ -51,6 +51,8 @@ public class Subject implements Serializable {
         course.setSubject(this);
     }
 
+    public Boolean hasRun3ConsecutiveYears() {return false;}
+
     public void removeCourse(Course course) {
         getCourses().remove(course);
         course.setSubject(null);
