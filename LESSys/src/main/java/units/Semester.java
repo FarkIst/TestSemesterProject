@@ -1,9 +1,10 @@
 package units;
 
+import helpers.TimeHelper;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -25,6 +26,17 @@ public class Semester implements Serializable {
     @ManyToMany(mappedBy = "semesterCourses")
     private
     Set<Course> semesterCourses;
+
+    public Semester() {
+        Calendar[] arr = TimeHelper.getCurrentSemester(TimeHelper.getCurrentDate());
+        this.semester_start = arr[0];
+        this.semester_end = arr[1];
+    }
+
+    public Semester(Calendar semester_start, Calendar semester_end){
+        this.semester_start = semester_start;
+        this.semester_end = semester_end;
+    }
 
     public int getId() {
         return id;

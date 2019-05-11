@@ -5,12 +5,7 @@ import org.junit.Test;
 
 import javax.persistence.*;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
-import static org.junit.Assert.*;
+import java.util.*;
 
 public class SubjectTest {
     @Test
@@ -57,7 +52,86 @@ public class SubjectTest {
 
     @Test
     public void hasRun3ConsecutiveYears() {
+        Subject subject = new Subject();
+        Course course = new Course();
 
+        subject.addCourse(course);
+
+        Date today = new Date();
+        Calendar todaysCalender = Calendar.getInstance();
+        todaysCalender.setTime(today);
+        int currYear = todaysCalender.get(Calendar.YEAR);
+        String scen = "";
+        if (todaysCalender.get(Calendar.MONTH) >= 4){
+            scen = "a";
+        } else {
+            scen = "b";
+            currYear --;
+        }
+
+        Set<Semester> set = new HashSet<Semester>();
+
+        for (int i = 0; i<6; i++){
+            Calendar from = Calendar.getInstance();
+            Calendar to = Calendar.getInstance();
+            if (scen.equals("b")){
+                from.set(currYear, 8, 1);
+                to.set(currYear, 11, 21);
+                scen = "a";
+            } else {
+                from.set(currYear, 0, 1);
+                to.set(currYear, 4, 1);
+                currYear --;
+                scen = "b";
+            }
+            Semester semester = new Semester(from, to);
+            set.add(semester);
+        }
+        course.setSemesterCourses(set);
+
+        Assert.assertEquals(subject.hasRun3ConsecutiveYears(), true);
+    }
+
+    @Test
+    public void hasRun3ConsecutiveYearsFalse() {
+        Subject subject = new Subject();
+        Course course = new Course();
+
+        subject.addCourse(course);
+
+        Date today = new Date();
+        Calendar todaysCalender = Calendar.getInstance();
+        todaysCalender.setTime(today);
+        int currYear = todaysCalender.get(Calendar.YEAR);
+        String scen = "";
+        if (todaysCalender.get(Calendar.MONTH) >= 4){
+            scen = "a";
+        } else {
+            scen = "b";
+            currYear --;
+        }
+
+        Set<Semester> set = new HashSet<Semester>();
+
+        for (int i = 0; i<5; i++){
+            Calendar from = Calendar.getInstance();
+            Calendar to = Calendar.getInstance();
+            if (scen.equals("b")){
+                from.set(currYear, 8, 1);
+                to.set(currYear, 11, 21);
+                scen = "a";
+            } else {
+                from.set(currYear, 0, 1);
+                to.set(currYear, 4, 1);
+                currYear --;
+                scen = "b";
+            }
+            Semester semester = new Semester(from, to);
+            set.add(semester);
+        }
+        course.setSemesterCourses(set);
+
+        Assert.assertEquals(subject.hasRun3ConsecutiveYears(), false);
     }
 
 }
