@@ -4,6 +4,7 @@ import units.Location;
 import units.User;
 
 import javax.persistence.EntityManager;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserMapper implements CRUDInterface<User>{
@@ -22,7 +23,11 @@ public class UserMapper implements CRUDInterface<User>{
     }
 
     public List<User> returnAllEntities() {
-        return null;
+        User user1 = new User(1);
+        user1.setName("George");
+        User user2 = new User(2);
+        user1.setName("Daniel");
+        return Arrays.asList(user1, user2);
     }
 
     public User createEntity(User entity) {
