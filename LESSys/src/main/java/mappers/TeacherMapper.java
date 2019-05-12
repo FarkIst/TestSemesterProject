@@ -1,18 +1,18 @@
 package mappers;
 
-import units.Location;
+import units.TeachingStaff;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class LocationMapper implements CRUDInterface<Location>{
+public class TeacherMapper implements CRUDInterface<TeachingStaff> {
     private DataMapper dm;
 
-    public LocationMapper(){
+    public TeacherMapper(){
         this.dm = new DataMapper(DataVars.PU);
     }
 
-    public LocationMapper(String PU){
+    public TeacherMapper(String PU){
         this.dm = new DataMapper(PU);
     }
 
@@ -20,19 +20,19 @@ public class LocationMapper implements CRUDInterface<Location>{
         return dm.getEMF().createEntityManager();
     }
 
-    public List returnAllEntities() {
+    public List<TeachingStaff> returnAllEntities() {
         return null;
     }
 
-    public Location createEntity(Location entity) {
+    public TeachingStaff createEntity(TeachingStaff entity) {
         return null;
     }
 
-    public Location readEntity(int id) {
+    public TeachingStaff readEntity(int id) {
         return null;
     }
 
-    public Location editEntity(Location entity) {
+    public TeachingStaff editEntity(TeachingStaff entity) {
         return null;
     }
 

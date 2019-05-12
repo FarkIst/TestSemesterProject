@@ -6,6 +6,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class DataMapper {
-        public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("less");
+    private EntityManagerFactory emf;
+
+    public DataMapper(String puN) {
+        this.emf = Persistence.createEntityManagerFactory(puN);
+    }
+
+    public EntityManagerFactory getEMF(){
+        return this.emf;
+    }
 }
 

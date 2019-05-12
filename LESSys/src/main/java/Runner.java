@@ -14,7 +14,8 @@ public class Runner {
         Course course = new Course();
 
         ts.addEnrolledCourses(course);
-        UserMapper.setUser(ts);
+        UserMapper um = new UserMapper();
+        um.createEntity(ts);
 
         System.out.println("Hello World");
     }
