@@ -42,7 +42,7 @@ public class UserMapper implements CRUDInterface<User>{
     public User readEntity(int id) {
         EntityManager em = getEntityManager();
         User user = em.find(User.class, id);
-        em.detach(user);
+//        em.detach(user);
         em.close();
         return user;
     }
