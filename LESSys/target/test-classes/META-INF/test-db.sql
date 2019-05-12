@@ -1,0 +1,1 @@
+insert into test_less.User(id, type) values(4444, "ts");
