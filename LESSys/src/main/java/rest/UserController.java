@@ -1,20 +1,20 @@
 package rest;
 
+import gherkin.deps.com.google.gson.Gson;
 import mappers.UserMapper;
+import org.codehaus.jackson.map.ObjectMapper;
 import units.User;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.List;
 
 @Path("/users/")
 public class UserController {
 
-    UserMapper userMapper;
+    UserMapper userMapper = new UserMapper();
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -35,11 +35,15 @@ public class UserController {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/{id}")
-    public User getUserInJSON(Integer id){
-        User user = new User(id);
+    public Response getUserInJSON(@PathParam("id") int id) throws IOException {
+        User user = new User(33);
         user.setName("George");
-        return user;
+        User userOut = userMapper.createEntity(user);
+        ObjectMapper Obj = new ObjectMapper();
+        String output = Obj.writeValueAsString(userOut);
+
+        return Response.status(200).entity(output).build();
     }
 }
