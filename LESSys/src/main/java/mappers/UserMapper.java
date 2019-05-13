@@ -1,6 +1,5 @@
 package mappers;
 
-import units.Location;
 import units.User;
 
 import javax.persistence.EntityManager;
@@ -42,7 +41,7 @@ public class UserMapper implements CRUDInterface<User>{
     public User readEntity(int id) {
         EntityManager em = getEntityManager();
         User user = em.find(User.class, id);
-//        em.detach(user);
+        em.detach(user);
         em.close();
         return user;
     }
@@ -51,6 +50,7 @@ public class UserMapper implements CRUDInterface<User>{
         EntityManager em = getEntityManager();
         User user = em.merge(entity);
         em.close();
+        System.out.println(user);
         return user;
     }
 
