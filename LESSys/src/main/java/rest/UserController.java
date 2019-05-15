@@ -17,7 +17,6 @@ public class UserController {
     UserMapper userMapper = new UserMapper();
 
     @GET
-    @Produces({MediaType.APPLICATION_JSON})
     @Path("/hello/{name}")
     public Response getMsg(@PathParam("name") String name) {
 
@@ -29,21 +28,21 @@ public class UserController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/all")
-    public List<User> getUsersInJSON(){
+    public Response getUsersInJSON(){
         List<User> users = userMapper.returnAllEntities();
-        return users;
+        return Response.status(200).entity(users).build();
     }
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/{id}")
     public Response getUserInJSON(@PathParam("id") int id) throws IOException {
-        User user = new User(33);
-        user.setName("George");
-        User userOut = userMapper.createEntity(user);
+        User userOut = userMapper.readEntity(id);
         ObjectMapper Obj = new ObjectMapper();
         String output = Obj.writeValueAsString(userOut);
 
         return Response.status(200).entity(output).build();
     }
+
+
 }

@@ -1,11 +1,8 @@
 package mappers;
 
-import org.hibernate.JDBCException;
-import units.Location;
 import units.User;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,6 +51,7 @@ public class UserMapper implements CRUDInterface<User>{
         EntityManager em = getEntityManager();
         User user = em.merge(entity);
         em.close();
+        System.out.println(user);
         return user;
     }
 
