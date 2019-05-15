@@ -22,6 +22,10 @@ public class Student extends User{
     )
     private List<Payment> coursePayments = new ArrayList<Payment>();
 
+    public Student(){};
+
+    public Student( int id ){ super(id); };
+
     public Set<Course> getEnrolledCourses() {
         return enrolledCourses;
     }

@@ -20,7 +20,7 @@
     <properties>
         <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/less"/>
         <property name="hibernate.connection.driver_class" value= "com.mysql.jdbc.Driver" />
-        <property name="hibernate.hbm2ddl.auto" value="create"/>
+        <property name="hibernate.hbm2ddl.auto" value="validate"/>
         <property name="hibernate.connection.username" value="root"/>
         <property name="hibernate.connection.password" value="sean666"/>
         <property name="hibernate.archive.autodetection" value="class"/>

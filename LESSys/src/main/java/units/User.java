@@ -11,9 +11,9 @@ import java.util.Calendar;
 public class User implements Serializable{
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
-    private int id;
+    protected int id;
 
-    private String name;
+    protected String name;
 
     @Temporal(TemporalType.DATE)
     private Calendar birthDate;

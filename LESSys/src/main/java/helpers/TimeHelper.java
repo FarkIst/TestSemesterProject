@@ -15,6 +15,7 @@ public class TimeHelper {
     public static Calendar[][] getLast6Semesters() {
         Date today = new Date();
         Calendar timeNow = Calendar.getInstance();
+        timeNow.clear(); // Remove milliseconds added to obj
         Calendar[][] semesterList = new Calendar[6][2];
         int startYear = timeNow.get(Calendar.YEAR);
         String semType = "a";
@@ -50,7 +51,9 @@ public class TimeHelper {
         String semType = "a";
 
         Calendar semStart= Calendar.getInstance();
+        semStart.clear(); // Remove milliseconds added to obj
         Calendar semEnd = Calendar.getInstance();
+        semEnd.clear(); // Remove milliseconds added to obj
 
         int currMonthDay = timeNow.get(Calendar.DAY_OF_MONTH);
         int currMonth = timeNow.get(Calendar.MONTH);

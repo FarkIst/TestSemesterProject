@@ -4,7 +4,8 @@ import javax.persistence.Entity;
 
 @Entity
 public class Staff extends User{
-    private int staffNo;
+    protected int staffNo;
+    protected Boolean councilMember;
 
     public int getStaffNo() {
         return staffNo;
@@ -12,5 +13,13 @@ public class Staff extends User{
 
     public void setStaffNo(int staffNo) {
         this.staffNo = staffNo;
+    }
+
+    public Boolean getCouncilMember() {
+        return councilMember;
+    }
+
+    public void setCouncilMember(Boolean councilMember) {
+        this.councilMember = councilMember;
     }
 }
