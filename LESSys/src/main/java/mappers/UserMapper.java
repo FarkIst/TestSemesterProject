@@ -31,34 +31,36 @@ public class UserMapper implements CRUDInterface<User>{
 
     public User createEntity(User entity) {
         EntityManager em = getEntityManager();
+        User newUser = new User();
         em.getTransaction().begin();
-        em.merge(entity);
+        newUser = em.merge(entity);
+        em.getTransaction().commit();
+        em.close();
+        return newUser;
+    }
+
+    public User readEntity(int id) {
+        EntityManager em = getEntityManager();
+        User user = em.find(User.class, id);
+        em.close();
+        return user;
+    }
+
+    public User editEntity(User entity) {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        entity = em.merge(entity);
         em.getTransaction().commit();
         em.close();
         return entity;
     }
 
-    public User readEntity(int id) {
-        EntityManager em = getEntityManager();
-
-        User user = em.find(User.class, id);
-        return user;
-       // em.close();
-       // return user;
-    }
-
-    public User editEntity(User entity) {
-        EntityManager em = getEntityManager();
-        User user = em.merge(entity);
-        em.close();
-        System.out.println(user);
-        return user;
-    }
-
     public void deleteEntity(int id) {
         EntityManager em = getEntityManager();
         User user = em.find(User.class, id);
+        em.getTransaction().begin();
         em.remove(user);
+        em.getTransaction().commit();
         em.close();
     }
 }
