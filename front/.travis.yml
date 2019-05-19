@@ -3,7 +3,7 @@ node_js:
 - "8"
 - node
 
-before_install: cd lessfront
+before_install: cd front
 script: echo "Running tests against $(node -v)..."
 
 jobs:
