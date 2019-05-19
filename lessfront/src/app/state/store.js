@@ -8,11 +8,11 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from './rootReducers';
 import rootSaga from './rootSagas';
 
-export default function () {
+export default function() {
   const loggerMiddleware = createLogger();
   const sagaMiddleware = createSagaMiddleware();
 
-  let store: any = null;
+  let store;
   const history = createBrowserHistory({
     basename: process.env.BASE_URL,
   });
@@ -31,7 +31,7 @@ export default function () {
   const reducer = createReducer();
 
   if (process.env.ENV === 'development') {
-    const w = window as any;
+    const w = window;
     const composeEnhancers = w.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     store = createStore(reducer, composeEnhancers(middlewares));
 

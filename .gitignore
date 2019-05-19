@@ -1,6 +1,16 @@
 # Compiled class file
 *.class
 
+#REACT
+node_modules
+
+coverage/ 
+*.sublime-project
+*.sublime-workspace
+
+#VISUAL
+.vscode
+
 # Log file
 *.log
 
