@@ -1,5 +1,7 @@
 package units;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -9,12 +11,15 @@ import java.util.Calendar;
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 @DiscriminatorColumn( name = "type" )
 public class User implements Serializable{
+    @JsonProperty
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
     protected int id;
 
+    @JsonProperty
     protected String name;
 
+    @JsonProperty
     @Temporal(TemporalType.DATE)
     private Calendar birthDate;
 

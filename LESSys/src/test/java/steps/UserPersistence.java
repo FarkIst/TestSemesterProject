@@ -1,6 +1,5 @@
 package steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -9,19 +8,19 @@ import org.junit.Assert;
 import units.*;
 
 public class UserPersistence {
-    private UserMapper userMapper = new UserMapper("test");
+    private UserMapper mapper = new UserMapper("test");
 
     private Student testSUser = (Student) UserFactory.createUser(Role.S);
 
     @When("^I ask to create a new Student$")
     public void iAskToCreateANewStudent() {
         Student student = (Student) UserFactory.createUser(Role.S);
-        testSUser = (Student) userMapper.createEntity(student);
+        testSUser = (Student) mapper.createEntity(student);
     }
 
     @Then("^A new Student should be created in the Database$")
     public void aNewStudentShouldBeCreatedInTheDatabase() {
-        Student studentUser = (Student) userMapper.readEntity(testSUser.getId());
+        Student studentUser = (Student) mapper.readEntity(testSUser.getId());
         Assert.assertEquals( testSUser.getId(), studentUser.getId() );
     }
 
@@ -30,12 +29,12 @@ public class UserPersistence {
     @When("^I ask to create a new TeachingStaff$")
     public void iAskToCreateANewTeachingStaff(){
         TeachingStaff teachingStaff = (TeachingStaff) UserFactory.createUser(Role.TS);
-        testTSUser = (TeachingStaff) userMapper.createEntity(teachingStaff);
+        testTSUser = (TeachingStaff) mapper.createEntity(teachingStaff);
     }
 
     @Then("^A new TeachingStaff should be created in the Database$")
     public void aNewTeachingStaffShouldBeCreatedInTheDatabase() {
-        TeachingStaff teachingStaffUser = (TeachingStaff) userMapper.readEntity(testTSUser.getId());
+        TeachingStaff teachingStaffUser = (TeachingStaff) mapper.readEntity(testTSUser.getId());
         Assert.assertEquals( testTSUser.getId(), teachingStaffUser.getId() );
     }
 
@@ -44,12 +43,12 @@ public class UserPersistence {
     @When("^I ask to create a new NonTeachingStaff$")
     public void iAskToCreateANewNonTeachingStaff() {
         NonTeachingStaff nonTeachingStaff = (NonTeachingStaff) UserFactory.createUser(Role.NTS);
-        testNTSUser = (NonTeachingStaff) userMapper.createEntity(nonTeachingStaff);
+        testNTSUser = (NonTeachingStaff) mapper.createEntity(nonTeachingStaff);
     }
 
     @Then("^A new NonTeachingStaff should be created in the Database$")
     public void aNewNonTeachingStaffShouldBeCreatedInTheDatabase() {
-        NonTeachingStaff nonTeachingStaffUser = (NonTeachingStaff) userMapper.readEntity(testNTSUser.getId());
+        NonTeachingStaff nonTeachingStaffUser = (NonTeachingStaff) mapper.readEntity(testNTSUser.getId());
         Assert.assertEquals( testNTSUser.getId(), nonTeachingStaffUser.getId() );
     }
 
@@ -57,7 +56,7 @@ public class UserPersistence {
 
     @When("^I ask to read an existing TeachingStaff$")
     public void iAskToReadAnExistingTeachingStaff() throws Throwable {
-        readableTS = (TeachingStaff) userMapper.readEntity(4447);
+        readableTS = (TeachingStaff) mapper.readEntity(4447);
     }
 
     @Given("^That a TeachingStaff of requested ID exists$")
@@ -74,7 +73,7 @@ public class UserPersistence {
 
     @When("^I ask to read an existing NonTeachingStaff$")
     public void iAskToReadAnExistingNonTeachingStaff() {
-         readableNTS = (NonTeachingStaff) userMapper.readEntity(4446);
+         readableNTS = (NonTeachingStaff) mapper.readEntity(4446);
     }
 
     @Given("^That a NonTeachingStaff of requested ID exists$")
@@ -91,7 +90,7 @@ public class UserPersistence {
 
     @When("^I ask to read an existing Student$")
     public void iAskToReadAnExistingStudent() {
-        readableS = (Student) userMapper.readEntity(4541);
+        readableS = (Student) mapper.readEntity(4541);
     }
 
     @Given("^That a Student of requested ID exists$")
@@ -110,19 +109,19 @@ public class UserPersistence {
     public void iAskToUpdateAnExistingStudent() {
         editStudent = (Student) UserFactory.createUser(Role.S);
         editStudent.setName("Monkey Jones");
-        newStudent = (Student) userMapper.createEntity(editStudent);
+        newStudent = (Student) mapper.createEntity(editStudent);
         newStudent.setName("Sheman");
-        userMapper.editEntity(newStudent);
+        mapper.editEntity(newStudent);
     }
 
     @Given("^That a Student of the same ID exists$")
     public void thatAStudentOfTheSameIDExists() {
-        Assert.assertNotNull(userMapper.readEntity(newStudent.getId()));
+        Assert.assertNotNull(mapper.readEntity(newStudent.getId()));
     }
 
     @Then("^The specified Student should be updated in the Database$")
     public void theSpecifiedStudentShouldBeUpdatedInTheDatabase() {
-        Student student = (Student) userMapper.readEntity(newStudent.getId());
+        Student student = (Student) mapper.readEntity(newStudent.getId());
         Assert.assertEquals("Sheman", student.getName());
     }
 
@@ -132,19 +131,19 @@ public class UserPersistence {
     public void iAskToUpdateAnExistingTeachingStaff() {
         editTS = (TeachingStaff) UserFactory.createUser(Role.TS);
         editTS.setName("Monkey Jones");
-        newTS = (TeachingStaff) userMapper.createEntity(editTS);
+        newTS = (TeachingStaff) mapper.createEntity(editTS);
         newTS.setName("Sheman");
-        userMapper.editEntity(newTS);
+        mapper.editEntity(newTS);
     }
 
     @Given("^That a TeachingStaff of the same ID exists$")
     public void thatATeachingStaffOfTheSameIDExists() {
-        Assert.assertNotNull(userMapper.readEntity(newTS.getId()));
+        Assert.assertNotNull(mapper.readEntity(newTS.getId()));
     }
 
     @Then("^The specified TeachingStaff should be updated in the Database$")
     public void theSpecifiedTeachingStaffShouldBeUpdatedInTheDatabase() {
-        TeachingStaff teachingStaff = (TeachingStaff) userMapper.readEntity(newTS.getId());
+        TeachingStaff teachingStaff = (TeachingStaff) mapper.readEntity(newTS.getId());
         Assert.assertEquals("Sheman", teachingStaff.getName());
     }
 
@@ -154,19 +153,19 @@ public class UserPersistence {
     public void iAskToUpdateAnExistingNonTeachingStaff() {
         editNTS = (NonTeachingStaff) UserFactory.createUser(Role.NTS);
         editNTS.setName("Monkey Jones");
-        newNTS = (NonTeachingStaff) userMapper.createEntity(editNTS);
+        newNTS = (NonTeachingStaff) mapper.createEntity(editNTS);
         newNTS.setName("Sheman");
-        userMapper.editEntity(newNTS);
+        mapper.editEntity(newNTS);
     }
 
     @Given("^That a NonTeachingStaff of the same ID exists$")
     public void thatANonTeachingStaffOfTheSameIDExists() {
-        Assert.assertNotNull(userMapper.readEntity(newNTS.getId()));
+        Assert.assertNotNull(mapper.readEntity(newNTS.getId()));
     }
 
     @Then("^The specified NonTeachingStaff should be updated in the Database$")
     public void theSpecifiedNonTeachingStaffShouldBeUpdatedInTheDatabase() {
-        NonTeachingStaff nonTeachingStaff = (NonTeachingStaff) userMapper.readEntity(newNTS.getId());
+        NonTeachingStaff nonTeachingStaff = (NonTeachingStaff) mapper.readEntity(newNTS.getId());
         Assert.assertEquals("Sheman", nonTeachingStaff.getName());
     }
 
@@ -175,18 +174,18 @@ public class UserPersistence {
     @When("^I ask to delete an existing Student$")
     public void iAskToDeleteAnExistingStudent() {
         Student myS = (Student) UserFactory.createUser(Role.S);
-        delStud = (Student) userMapper.createEntity(myS);
+        delStud = (Student) mapper.createEntity(myS);
     }
 
     @Given("^That a Student of the specified ID exists$")
     public void thatAStudentOfTheSpecifiedIDExists() {
-        Assert.assertNotNull(userMapper.readEntity(delStud.getId()));
+        Assert.assertNotNull(mapper.readEntity(delStud.getId()));
     }
 
     @Then("^The specified Student should be deleted from Database$")
     public void theSpecifiedStudentShouldBeDeletedFromDatabase() {
-        userMapper.deleteEntity(delStud.getId());
-        Assert.assertNull(userMapper.readEntity(delStud.getId()));
+        mapper.deleteEntity(delStud.getId());
+        Assert.assertNull(mapper.readEntity(delStud.getId()));
     }
 
     private TeachingStaff delTS;
@@ -194,18 +193,18 @@ public class UserPersistence {
     @When("^I ask to delete an existing TeachingStaff$")
     public void iAskToDeleteAnExistingTeachingStaff() {
         TeachingStaff myTS = (TeachingStaff) UserFactory.createUser(Role.TS);
-        delTS = (TeachingStaff) userMapper.createEntity(myTS);
+        delTS = (TeachingStaff) mapper.createEntity(myTS);
     }
 
     @Given("^That a TeachingStaff of the specified ID exists$")
     public void thatATeachingStaffOfTheSpecifiedIDExists() {
-        Assert.assertNotNull(userMapper.readEntity(delTS.getId()));
+        Assert.assertNotNull(mapper.readEntity(delTS.getId()));
     }
 
     @Then("^The specified TeachingStaff should be deleted from Database$")
     public void theSpecifiedTeachingStaffShouldBeDeletedFromDatabase() {
-        userMapper.deleteEntity(delTS.getId());
-        Assert.assertNull(userMapper.readEntity(delTS.getId()));
+        mapper.deleteEntity(delTS.getId());
+        Assert.assertNull(mapper.readEntity(delTS.getId()));
     }
 
     private NonTeachingStaff delNTS;
@@ -213,18 +212,18 @@ public class UserPersistence {
     @When("^I ask to delete an existing NonTeachingStaff$")
     public void iAskToDeleteAnExistingNonTeachingStaff() {
         NonTeachingStaff myNTS = (NonTeachingStaff) UserFactory.createUser(Role.NTS);
-        delNTS = (NonTeachingStaff) userMapper.createEntity(myNTS);
+        delNTS = (NonTeachingStaff) mapper.createEntity(myNTS);
     }
 
     @Given("^That a NonTeachingStaff of the specified ID exists$")
     public void thatANonTeachingStaffOfTheSpecifiedIDExists() {
-        Assert.assertNotNull(userMapper.readEntity(delNTS.getId()));
+        Assert.assertNotNull(mapper.readEntity(delNTS.getId()));
     }
 
     @Then("^The specified NonTeachingStaff should be deleted from Database$")
     public void theSpecifiedNonTeachingStaffShouldBeDeletedFromDatabase() throws Throwable {
-        userMapper.deleteEntity(delNTS.getId());
-        Assert.assertNull(userMapper.readEntity(delNTS.getId()));
+        mapper.deleteEntity(delNTS.getId());
+        Assert.assertNull(mapper.readEntity(delNTS.getId()));
     }
 
 }

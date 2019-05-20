@@ -1,12 +1,13 @@
 package units;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Calendar;
 
 @Entity
 @Table
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
-public class Schedule {
+public class Schedule implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

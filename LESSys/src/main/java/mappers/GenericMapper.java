@@ -1,19 +1,25 @@
 package mappers;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
-public abstract class GenericMapper< T extends Serializable> {
+public abstract class GenericMapper< T extends Serializable> implements CRUDInterface<T>{
     private DataMapper dm;
     private Class< T > myClass;
+    private EntityManager em;
+
     public GenericMapper(Class< T > myClass){
         this.dm = new DataMapper(DataVars.PU);
+        this.em = getEntityManager();
         this.myClass = myClass;
     }
 
     public GenericMapper(String PU, Class< T > myClass){
         this.dm = new DataMapper(PU);
+        this.em = getEntityManager();
         this.myClass = myClass;
     }
 
@@ -21,30 +27,33 @@ public abstract class GenericMapper< T extends Serializable> {
         return dm.getEMF().createEntityManager();
     }
 
-    public List< T > returnAllEntities() {
-        EntityManager em = getEntityManager();
-        return em.createQuery( "from " + myClass.getName() )
-                .getResultList();
+    public Collection<T> returnAllEntities() {
+        Query query = em.createQuery("from " + myClass.getName() + " u");
+        return (Collection<T>) query.getResultList();
     }
 
-    public void createEntity(T entity) {
-        EntityManager em = getEntityManager();
-        em.persist( entity );
+    public T createEntity(T entity) {
+        em.getTransaction().begin();
+        em.merge(entity);
+        em.getTransaction().commit();
+        return entity;
     }
 
     public T readEntity(int id) {
-        EntityManager em = getEntityManager();
-        return em.find( myClass, id );
+        return this.em.find( myClass, id );
     }
 
-    public void editEntity(T entity) {
-        EntityManager em = getEntityManager();
-        em.merge(entity);
+    public T editEntity(T entity) {
+        em.getTransaction().begin();
+        entity = em.merge(entity);
+        em.getTransaction().commit();
+        return entity;
     }
 
     public void deleteEntity(int id) {
-        EntityManager em = getEntityManager();
         T entity = readEntity(id);
-        em.remove(entity);
+        em.getTransaction().begin();
+        this.em.remove(entity);
+        em.getTransaction().commit();
     }
 }

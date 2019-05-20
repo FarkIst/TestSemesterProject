@@ -1,11 +1,6 @@
-import mappers.CourseMapper;
-import mappers.LocationMapper;
-import mappers.UserMapper;
+import mappers.TeacherStaffMapper;
 import units.Course;
 import units.TeachingStaff;
-import units.User;
-
-import java.util.ArrayList;
 
 public class Runner {
 
@@ -14,7 +9,7 @@ public class Runner {
         Course course = new Course();
 
         ts.addEnrolledCourses(course);
-        UserMapper um = new UserMapper();
+        TeacherStaffMapper um = new TeacherStaffMapper();
         um.createEntity(ts);
 
         System.out.println("Hello World");

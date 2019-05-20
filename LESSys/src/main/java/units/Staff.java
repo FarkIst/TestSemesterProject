@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 @Entity
 public class Staff extends User{
     protected int staffNo;
-    protected Boolean councilMember;
+    protected Boolean isCouncilMember;
 
     public int getStaffNo() {
         return staffNo;
@@ -15,11 +15,11 @@ public class Staff extends User{
         this.staffNo = staffNo;
     }
 
-    public Boolean getCouncilMember() {
-        return councilMember;
+    public Boolean isCouncilMember() {
+        return isCouncilMember;
     }
 
-    public void setCouncilMember(Boolean councilMember) {
-        this.councilMember = councilMember;
+    public void setIsCouncilMember(Boolean isCouncilMember) {
+        this.isCouncilMember = isCouncilMember;
     }
 }
