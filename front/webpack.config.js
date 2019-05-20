@@ -207,19 +207,6 @@ module.exports = () => {
           exclude: [/node_modules/, /build/, /__test__/],
         },
         {
-          test: /\.jsx?$/,
-          sideEffects: false,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env'],
-              },
-            },
-          ],
-        },
-        {
           test: /(\.txt$|\.md|gql)/,
           use: 'raw-loader',
         },
