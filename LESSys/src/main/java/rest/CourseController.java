@@ -58,4 +58,12 @@ public class CourseController {
         mapper.deleteEntity(id);
         return Response.status(200).build();
     }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}/add-student/{studentId}")
+    public Response addStudentToCourseInJSON(@PathParam("id") int id, @PathParam("studentId") int studentId) {
+        mapper.addStudentToCourse(id, studentId);
+        return Response.status(200).build();
+    }
 }
