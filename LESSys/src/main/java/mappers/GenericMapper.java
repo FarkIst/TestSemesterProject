@@ -7,9 +7,9 @@ import java.util.Collection;
 import java.util.List;
 
 public abstract class GenericMapper< T extends Serializable> implements CRUDInterface<T>{
-    private DataMapper dm;
     private Class< T > myClass;
-    private EntityManager em;
+    private DataMapper dm;
+    protected EntityManager em;
 
     public GenericMapper(Class< T > myClass){
         this.dm = new DataMapper(DataVars.PU);

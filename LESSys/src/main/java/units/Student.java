@@ -34,6 +34,10 @@ public class Student extends User{
         this.enrolledCourses = enrolledCourses;
     }
 
+    public void addEnrolledCourse(Course course) {
+        this.enrolledCourses.add(course);
+    }
+
     public void addCoursePayment(Payment payment) {
         getCoursePayments().add(payment);
         payment.setStudent(this);
