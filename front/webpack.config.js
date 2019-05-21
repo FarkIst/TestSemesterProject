@@ -1,5 +1,7 @@
 const Path = require('path');
+const webpack = require('webpack');
 const Rimraf = require('rimraf');
+const dotenv = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {
   LoaderOptionsPlugin,
@@ -21,7 +23,14 @@ module.exports = () => {
   const URL_LOADER_LIMIT = env.urlloaderlimit || 65536;
   const BASE_URL = env.baseurl || '';
   const ANALYZE = env.analyze || false;
+  // call dotenv and it will return an Object with a parsed key
+  const myenv = dotenv.config().parsed;
 
+  // reduce it to a nice object, the same as before
+  const envKeys = Object.keys(myenv).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
+  }, {});
   console.log(`Settings:`);
   console.log(`- Mode: ${MODE}`);
 
@@ -140,6 +149,7 @@ module.exports = () => {
       contentBase: [Path.resolve(__dirname, 'public')],
     },
     plugins: [
+      new webpack.DefinePlugin(envKeys),
       !IS_BUILD &&
         new UglifyJsPlugin({
           parallel: true,

@@ -10,7 +10,6 @@ const { store, history } = configStore();
 
 const render = () => {
   const root = document.getElementsByTagName('app-root')[0];
-
   if (!root) {
     throw new Error(`Root element "app-root" not found.`);
   }
