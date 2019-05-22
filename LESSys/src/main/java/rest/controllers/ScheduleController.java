@@ -1,4 +1,4 @@
-package rest;
+package rest.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import mappers.ScheduleMapper;
@@ -25,7 +25,7 @@ public class ScheduleController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/")
+
     public Response createUser(Schedule entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();
@@ -77,15 +77,15 @@ public class ScheduleController {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{id}/add-course/{roomId}")
+    @Path("/{id}/add-room/{roomId}")
     public Response addRoomToSchedule(@PathParam("id") int id, @PathParam("roomId") int roomId) {
-        Schedule entity = mapper.addRoomtoSchedule(id, roomId);
+        Schedule entity = mapper.addRoomToSchedule(id, roomId);
         return Response.status(200).entity(entity).build();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{id}/add-course/")
+    @Path("/{id}/add-room/")
     public Response removeRoomFromSchedule(@PathParam("id") int id) {
         Schedule entity = mapper.removeRoomFromSchedule(id);
         return Response.status(200).entity(entity).build();

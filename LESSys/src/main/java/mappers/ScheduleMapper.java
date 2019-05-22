@@ -32,7 +32,7 @@ public class ScheduleMapper extends GenericMapper<Schedule> implements ScheduleI
         return schedule;
     }
 
-    public Schedule addRoomtoSchedule(int id, int roomId) {
+    public Schedule addRoomToSchedule(int id, int roomId) {
         Schedule schedule = this.em.find(Schedule.class, id);
         Room room = this.em.find(Room.class, roomId);
         schedule.setRoom(room);

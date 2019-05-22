@@ -1,8 +1,8 @@
-package rest;
+package rest.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import mappers.SubjectMapper;
-import units.Subject;
+import mappers.SimpleUserMapper;
+import units.SimpleUser;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -10,23 +10,23 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.Collection;
 
-@Path("/subjects/")
-public class SubjectController {
-    SubjectMapper mapper = new SubjectMapper();
+@Path("/simple-users/")
+public class SimpleUserController {
+    SimpleUserMapper mapper = new SimpleUserMapper();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/all")
     public Response getUsers() {
-        Collection<Subject> entities = mapper.returnAllEntities();
+        Collection<SimpleUser> entities = mapper.returnAllEntities();
         return Response.status(200).entity(entities).build();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/")
-    public Response createUser(Subject entity) {
+
+    public Response createUser(SimpleUser entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -35,7 +35,7 @@ public class SubjectController {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public Response getUser(@PathParam("id") int id) throws IOException {
-        Subject entity = mapper.readEntity(id);
+        SimpleUser entity = mapper.readEntity(id);
         ObjectMapper Obj = new ObjectMapper();
         String output = Obj.writeValueAsString(entity);
 
@@ -46,7 +46,7 @@ public class SubjectController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response putUser(Subject entity) {
+    public Response putUser(SimpleUser entity) {
         entity = mapper.editEntity(entity);
         return Response.status(200).entity(entity).build();
     }

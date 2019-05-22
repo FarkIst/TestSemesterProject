@@ -7,7 +7,7 @@ public interface ScheduleInterface extends CRUDInterface<Schedule> {
 
     public Schedule removeCourseFromSchedule(int id);
 
-    public Schedule addRoomtoSchedule(int id, int roomId);
+    public Schedule addRoomToSchedule(int id, int roomId);
 
     public Schedule removeRoomFromSchedule(int id);
 }

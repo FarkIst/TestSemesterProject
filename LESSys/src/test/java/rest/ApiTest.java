@@ -4,6 +4,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
 import org.junit.Test;
+import rest.controllers.SimpleUserController;
 import units.SimpleUser;
 
 import javax.ws.rs.client.Entity;
