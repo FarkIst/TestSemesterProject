@@ -1,7 +1,7 @@
 package rest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import mappers.LocationMapper;
-import org.codehaus.jackson.map.ObjectMapper;
 import units.Location;
 
 import javax.ws.rs.*;

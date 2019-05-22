@@ -1,7 +1,7 @@
 package rest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import mappers.ScheduleMapper;
-import org.codehaus.jackson.map.ObjectMapper;
 import units.Schedule;
 
 import javax.ws.rs.*;

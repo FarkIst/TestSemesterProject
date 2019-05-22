@@ -1,14 +1,13 @@
 package rest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import mappers.StudentMapper;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jettison.json.JSONObject;
 import units.Course;
 import units.Student;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.Collection;

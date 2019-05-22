@@ -1,7 +1,7 @@
 package rest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import mappers.TeacherStaffMapper;
-import org.codehaus.jackson.map.ObjectMapper;
 import units.TeachingStaff;
 
 import javax.ws.rs.*;
