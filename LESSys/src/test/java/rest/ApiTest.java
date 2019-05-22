@@ -9,6 +9,7 @@ import units.SimpleUser;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Calendar;
 
@@ -23,20 +24,23 @@ public class ApiTest extends JerseyTest {
         enable(TestProperties.DUMP_ENTITY);
         return new ResourceConfig(SimpleUserController.class);
     }
-
+    
     @Test
-    public void test() {
+    public void testCreate() {
+        String path = "/simple-users/";
+
         SimpleUser user =  new SimpleUser();
         Calendar birthdate = Calendar.getInstance();
         birthdate.set(1996,2,2);
         user.setBirthDate(birthdate);
         user.setName("John");
 
-        final Response response = target("/simple-users/").request().post(Entity.json(user));
+        final Response response = target(path).request().post(Entity.json(user));
 
         System.out.println(response.toString());
 
         assertEquals("should return status 200", 200, response.getStatus());
-        assertNotNull("Should return list", response.getEntity());
+        assertEquals("Should return json", MediaType.APPLICATION_JSON_TYPE, response.getMediaType());
+        assertEquals("Should return same entity id", user.getId(), response.readEntity(SimpleUser.class).getId());
     }
 }
