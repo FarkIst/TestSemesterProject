@@ -5,6 +5,14 @@ import * as actions from './actions';
 import { getTeachingstaff } from './services';
 import { teachingstaffConstants } from './types';
 
+const testData = [
+  { id: 33, name: 'TEACHASeanoboyo' },
+  { id: 34, name: 'Bingo' },
+  { id: 35, name: 'Nadim' },
+  { id: 36, name: 'Dingo' },
+  { id: 37, name: 'Oyster' },
+];
+
 /**
  * Retrieves users
  * [ { User } ]
@@ -12,10 +20,10 @@ import { teachingstaffConstants } from './types';
 function* fetchTeachingstaff(action) {
   try {
     yield put(showLoading());
-    const data = yield call(getTeachingstaff);
-    yield put(data.teachingstaff);
+    //    const data = yield call(getTeachingstaff);
+    yield put(actions.teachingstaffSuccess(testData));
   } catch (e) {
-    yield put(data(e.message));
+    // yield put(actions.teachingstaffFailure(data(e.message)));
   } finally {
     yield put(hideLoading());
   }
@@ -24,9 +32,6 @@ function* fetchTeachingstaff(action) {
 /**
  * Sets up a list of watchers waiting for request to be dispatched and then calls a matching function
  */
-export default function* flowStepSaga() {
-  yield takeEvery(
-    teachingstaffConstants.TEACHINGSTAFF_REQUEST,
-    fetchTeachingstaff,
-  );
+export default function* teacherSaga() {
+  yield takeEvery('TEACHINGSTAFF_REQUEST', fetchTeachingstaff);
 }

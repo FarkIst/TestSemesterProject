@@ -1,23 +1,25 @@
 import * as React from 'react';
 import { Box, Tab, Tabs, Text, Image } from 'grommet';
 
+import { UserList, TeacherList, StudentList } from '~/app/units';
+
 class Home extends React.Component {
   render() {
     return (
       <Tabs height="medium" flex="grow" alignSelf="center">
-        <Tab title="Tab 1">
+        <Tab title="Users">
           <Box margin="small" pad="small">
-            <Text>Content for the First Tab</Text>
+            <UserList />
           </Box>
         </Tab>
-        <Tab title="Tab 2">
+        <Tab title="Students">
           <Box margin="small" pad="small">
-            <Text>Content for the Second Tab</Text>
+            <StudentList />
           </Box>
         </Tab>
-        <Tab title="Tab 3">
-          <Box flex="grow" margin="small" pad="small">
-            <Image src="//v2.grommet.io/assets/Wilderpeople_Ricky.jpg" />
+        <Tab title="Teachers">
+          <Box margin="small" pad="small">
+            <TeacherList />
           </Box>
         </Tab>
       </Tabs>
