@@ -26,7 +26,7 @@ const render = () => {
 
 if (process.env.ENV === 'development' && module.hot) {
   module.hot.accept('~/app/pages', render);
-  module.hot.accept('~/app/units', render);
+  //  module.hot.accept('~/app/units', render);
 }
 
 render();
