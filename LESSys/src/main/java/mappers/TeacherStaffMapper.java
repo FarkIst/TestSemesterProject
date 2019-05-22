@@ -46,15 +46,12 @@ public class TeacherStaffMapper extends GenericMapper<TeachingStaff> implements 
         return null;
     }
 
-    public Staff addToSchoolCommittee(Staff staff) {
-        return null;
-    }
-
-    public Subject suggestSubject(Staff staff, Subject subject) {
-        return null;
-    }
-
-    public Subject voteSubject(Staff staff, Subject subject) {
-        return null;
+    public TeachingStaff addToSchoolCouncil(int id) {
+        TeachingStaff teacher = this.em.find(TeachingStaff.class, id);
+        teacher.setIsCouncilMember(true);
+        em.getTransaction().begin();
+        em.merge(teacher);
+        em.getTransaction().commit();
+        return teacher;
     }
 }

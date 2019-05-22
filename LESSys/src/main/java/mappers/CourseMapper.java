@@ -12,12 +12,13 @@ public class CourseMapper extends GenericMapper<Course> implements CourseInterfa
         super(PU, Course.class);
     }
 
-    public void addStudentToCourse(int id, int studentId) {
+    public Student addStudentToCourse(int id, int studentId) {
         Course course = this.em.find(Course.class, id);
         Student student = this.em.find(Student.class, studentId);
         student.addEnrolledCourse(course);
         em.getTransaction().begin();
         em.merge(student);
         em.getTransaction().commit();
+        return student;
     }
 }

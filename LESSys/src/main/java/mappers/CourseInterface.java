@@ -1,7 +1,8 @@
 package mappers;
 
 import units.Course;
+import units.Student;
 
 public interface CourseInterface extends CRUDInterface<Course> {
-    public void addStudentToCourse(int id, int studentId);
+    public Student addStudentToCourse(int id, int studentId);
 }

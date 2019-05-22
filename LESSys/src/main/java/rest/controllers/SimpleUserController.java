@@ -1,8 +1,8 @@
-package rest;
+package rest.controllers;
 
-import mappers.CourseMapper;
-import org.codehaus.jackson.map.ObjectMapper;
-import units.Course;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import mappers.SimpleUserMapper;
+import units.SimpleUser;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -10,23 +10,23 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.Collection;
 
-@Path("/courses/")
-public class CourseController {
-    CourseMapper mapper = new CourseMapper();
+@Path("/simple-users/")
+public class SimpleUserController {
+    SimpleUserMapper mapper = new SimpleUserMapper();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/all")
-    public Response getUsersInJSON() {
-        Collection<Course> entities = mapper.returnAllEntities();
+    public Response getUsers() {
+        Collection<SimpleUser> entities = mapper.returnAllEntities();
         return Response.status(200).entity(entities).build();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/")
-    public Response createUserInJSON(Course entity) {
+
+    public Response createUser(SimpleUser entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -34,8 +34,8 @@ public class CourseController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response getUserInJSON(@PathParam("id") int id) throws IOException {
-        Course entity = mapper.readEntity(id);
+    public Response getUser(@PathParam("id") int id) throws IOException {
+        SimpleUser entity = mapper.readEntity(id);
         ObjectMapper Obj = new ObjectMapper();
         String output = Obj.writeValueAsString(entity);
 
@@ -46,7 +46,7 @@ public class CourseController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response putUserInJSON(Course entity) {
+    public Response putUser(SimpleUser entity) {
         entity = mapper.editEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -54,16 +54,8 @@ public class CourseController {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response deleteUserInJSON(@PathParam("id") int id) {
+    public Response deleteUser(@PathParam("id") int id) {
         mapper.deleteEntity(id);
-        return Response.status(200).build();
-    }
-
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{id}/add-student/{studentId}")
-    public Response addStudentToCourseInJSON(@PathParam("id") int id, @PathParam("studentId") int studentId) {
-        mapper.addStudentToCourse(id, studentId);
         return Response.status(200).build();
     }
 }

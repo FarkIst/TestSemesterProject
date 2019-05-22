@@ -1,8 +1,8 @@
-package rest;
+package rest.controllers;
 
-import mappers.LocationMapper;
-import org.codehaus.jackson.map.ObjectMapper;
-import units.Location;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import mappers.SubjectMapper;
+import units.Subject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -10,23 +10,23 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.Collection;
 
-@Path("/locations/")
-public class LocationController {
-    LocationMapper mapper = new LocationMapper();
+@Path("/subjects/")
+public class SubjectController {
+    SubjectMapper mapper = new SubjectMapper();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/all")
-    public Response getUsersInJSON() {
-        Collection<Location> entities = mapper.returnAllEntities();
+    public Response getUsers() {
+        Collection<Subject> entities = mapper.returnAllEntities();
         return Response.status(200).entity(entities).build();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/")
-    public Response createUserInJSON(Location entity) {
+
+    public Response createUser(Subject entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -34,8 +34,8 @@ public class LocationController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response getUserInJSON(@PathParam("id") int id) throws IOException {
-        Location entity = mapper.readEntity(id);
+    public Response getUser(@PathParam("id") int id) throws IOException {
+        Subject entity = mapper.readEntity(id);
         ObjectMapper Obj = new ObjectMapper();
         String output = Obj.writeValueAsString(entity);
 
@@ -46,7 +46,7 @@ public class LocationController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response putUserInJSON(Location entity) {
+    public Response putUser(Subject entity) {
         entity = mapper.editEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -54,7 +54,7 @@ public class LocationController {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response deleteUserInJSON(@PathParam("id") int id) {
+    public Response deleteUser(@PathParam("id") int id) {
         mapper.deleteEntity(id);
         return Response.status(200).build();
     }

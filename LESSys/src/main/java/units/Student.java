@@ -38,6 +38,10 @@ public class Student extends User{
         this.enrolledCourses.add(course);
     }
 
+    public void removeEnrolledCourse(Course course) {
+        this.enrolledCourses.remove(course);
+    }
+
     public void addCoursePayment(Payment payment) {
         getCoursePayments().add(payment);
         payment.setStudent(this);
