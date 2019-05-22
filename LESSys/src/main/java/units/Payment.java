@@ -9,6 +9,12 @@ import java.util.Calendar;
 @Table
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 public class Payment implements Serializable {
+    public Payment(Student student, Course course, Double payment_amt, Calendar date) {
+        this.student = student;
+        this.course = course;
+        this.payment_amt = payment_amt;
+        this.date = date;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -17,7 +17,7 @@ public class ScheduleController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/all")
-    public Response getUsersInJSON() {
+    public Response getUsers() {
         Collection<Schedule> entities = mapper.returnAllEntities();
         return Response.status(200).entity(entities).build();
     }
@@ -26,7 +26,7 @@ public class ScheduleController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
-    public Response createUserInJSON(Schedule entity) {
+    public Response createUser(Schedule entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -34,7 +34,7 @@ public class ScheduleController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response getUserInJSON(@PathParam("id") int id) throws IOException {
+    public Response getUser(@PathParam("id") int id) throws IOException {
         Schedule entity = mapper.readEntity(id);
         ObjectMapper Obj = new ObjectMapper();
         String output = Obj.writeValueAsString(entity);
@@ -46,7 +46,7 @@ public class ScheduleController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response putUserInJSON(Schedule entity) {
+    public Response putUser(Schedule entity) {
         entity = mapper.editEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -54,8 +54,40 @@ public class ScheduleController {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response deleteUserInJSON(@PathParam("id") int id) {
+    public Response deleteUser(@PathParam("id") int id) {
         mapper.deleteEntity(id);
         return Response.status(200).build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}/add-course/{courseId}")
+    public Response addCourseToSchedule(@PathParam("id") int id, @PathParam("courseId") int courseId) {
+        Schedule entity = mapper.addCoursetoSchedule(id, courseId);
+        return Response.status(200).entity(entity).build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}/add-course/")
+    public Response removeCourseFromSchedule(@PathParam("id") int id) {
+        Schedule entity = mapper.removeCourseFromSchedule(id);
+        return Response.status(200).entity(entity).build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}/add-course/{roomId}")
+    public Response addRoomToSchedule(@PathParam("id") int id, @PathParam("roomId") int roomId) {
+        Schedule entity = mapper.addRoomtoSchedule(id, roomId);
+        return Response.status(200).entity(entity).build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}/add-course/")
+    public Response removeRoomFromSchedule(@PathParam("id") int id) {
+        Schedule entity = mapper.removeRoomFromSchedule(id);
+        return Response.status(200).entity(entity).build();
     }
 }

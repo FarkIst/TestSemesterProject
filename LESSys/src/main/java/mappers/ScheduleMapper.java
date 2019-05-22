@@ -13,19 +13,41 @@ public class ScheduleMapper extends GenericMapper<Schedule> implements ScheduleI
         super(PU, Schedule.class);
     }
 
-    public Schedule addCoursetoSchedule(Schedule schedule, Course course) {
-        return null;
+    public Schedule addCoursetoSchedule(int id, int courseId) {
+        Schedule schedule = this.em.find(Schedule.class, id);
+        Course course = this.em.find(Course.class, courseId);
+        schedule.setCourse(course);
+        em.getTransaction().begin();
+        em.merge(schedule);
+        em.getTransaction().commit();
+        return schedule;
     }
 
-    public Schedule removeCoursefromSchedule(Schedule schedule, Course course) {
-        return null;
+    public Schedule removeCourseFromSchedule(int id) {
+        Schedule schedule = this.em.find(Schedule.class, id);
+        schedule.setCourse(null);
+        em.getTransaction().begin();
+        em.merge(schedule);
+        em.getTransaction().commit();
+        return schedule;
     }
 
-    public Schedule addRoomtoSchedule(Schedule schedule, Room room) {
-        return null;
+    public Schedule addRoomtoSchedule(int id, int roomId) {
+        Schedule schedule = this.em.find(Schedule.class, id);
+        Room room = this.em.find(Room.class, roomId);
+        schedule.setRoom(room);
+        em.getTransaction().begin();
+        em.merge(schedule);
+        em.getTransaction().commit();
+        return schedule;
     }
 
-    public Schedule removeRoomfromSchedule(Schedule schedule, Room room) {
-        return null;
+    public Schedule removeRoomFromSchedule(int id) {
+        Schedule schedule = this.em.find(Schedule.class, id);
+        schedule.setRoom(null);
+        em.getTransaction().begin();
+        em.merge(schedule);
+        em.getTransaction().commit();
+        return schedule;
     }
 }

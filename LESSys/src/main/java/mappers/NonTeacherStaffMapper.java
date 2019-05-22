@@ -1,10 +1,9 @@
 package mappers;
 
 import units.NonTeachingStaff;
-import units.Staff;
 import units.Subject;
 
-public class NonTeacherStaffMapper extends GenericMapper<NonTeachingStaff> implements StaffInterface {
+public class NonTeacherStaffMapper extends GenericMapper<NonTeachingStaff> implements StaffInterface<NonTeachingStaff> {
     public NonTeacherStaffMapper() {
         super(NonTeachingStaff.class);
     }
@@ -13,15 +12,12 @@ public class NonTeacherStaffMapper extends GenericMapper<NonTeachingStaff> imple
         super(PU, NonTeachingStaff.class);
     }
 
-    public Staff addToSchoolCommittee(Staff staff) {
-        return null;
-    }
-
-    public Subject suggestSubject(Staff staff, Subject subject) {
-        return null;
-    }
-
-    public Subject voteSubject(Staff staff, Subject subject) {
-        return null;
+    public NonTeachingStaff addToSchoolCouncil(int id) {
+        NonTeachingStaff nonTeacherStaff = this.em.find(NonTeachingStaff.class, id);
+        nonTeacherStaff.setIsCouncilMember(true);
+        em.getTransaction().begin();
+        em.merge(nonTeacherStaff);
+        em.getTransaction().commit();
+        return nonTeacherStaff;
     }
 }

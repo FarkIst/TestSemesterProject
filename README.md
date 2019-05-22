@@ -123,6 +123,8 @@ A schedule will have a relationship with a room(room has many schedules) and a s
 * Some basic mappers (only user works completely I think)
 * All the data models are pretty much finished
 * API environment setup
+* Finish up a few more core mappers, for front end functionality
+* Finish up a few more mapping tests
 
 
 ### TODO LIST
@@ -132,8 +134,6 @@ A schedule will have a relationship with a room(room has many schedules) and a s
 * Add a decent assertion library to tests
 * Add another parameter test (?)
 * Add another cucumber test, better than the current one (?)
-* Finish up a few more core mappers, for front end functionality
-* Finish up a few more mapping tests
 * Add some test data (script is best, check the test persistence unit how to easily add it) to production DB
 * state testing and behavior testing for backend??
 * Test the API (important)

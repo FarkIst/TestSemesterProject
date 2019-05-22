@@ -17,7 +17,7 @@ public class NonTeacherStaffController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/all")
-    public Response getUsersInJSON() {
+    public Response getUsers() {
         Collection<NonTeachingStaff> entities = mapper.returnAllEntities();
         return Response.status(200).entity(entities).build();
     }
@@ -26,7 +26,7 @@ public class NonTeacherStaffController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
-    public Response createUserInJSON(NonTeachingStaff entity) {
+    public Response createUser(NonTeachingStaff entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -34,7 +34,7 @@ public class NonTeacherStaffController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response getUserInJSON(@PathParam("id") int id) throws IOException {
+    public Response getUser(@PathParam("id") int id) throws IOException {
         NonTeachingStaff entity = mapper.readEntity(id);
         ObjectMapper Obj = new ObjectMapper();
         String output = Obj.writeValueAsString(entity);
@@ -46,7 +46,7 @@ public class NonTeacherStaffController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response putUserInJSON(NonTeachingStaff entity) {
+    public Response putUser(NonTeachingStaff entity) {
         entity = mapper.editEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -54,8 +54,17 @@ public class NonTeacherStaffController {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response deleteUserInJSON(@PathParam("id") int id) {
+    public Response deleteUser(@PathParam("id") int id) {
         mapper.deleteEntity(id);
         return Response.status(200).build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public Response addToSchoolCouncil(@PathParam("id") int id) {
+        NonTeachingStaff entity = mapper.addToSchoolCouncil(id);
+        return Response.status(200).entity(entity).build();
     }
 }

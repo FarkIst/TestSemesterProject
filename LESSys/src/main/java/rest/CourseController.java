@@ -3,6 +3,7 @@ package rest;
 import mappers.CourseMapper;
 import org.codehaus.jackson.map.ObjectMapper;
 import units.Course;
+import units.Student;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -17,7 +18,7 @@ public class CourseController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/all")
-    public Response getUsersInJSON() {
+    public Response getUsers() {
         Collection<Course> entities = mapper.returnAllEntities();
         return Response.status(200).entity(entities).build();
     }
@@ -26,7 +27,7 @@ public class CourseController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
-    public Response createUserInJSON(Course entity) {
+    public Response createUser(Course entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -34,7 +35,7 @@ public class CourseController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response getUserInJSON(@PathParam("id") int id) throws IOException {
+    public Response getUser(@PathParam("id") int id) throws IOException {
         Course entity = mapper.readEntity(id);
         ObjectMapper Obj = new ObjectMapper();
         String output = Obj.writeValueAsString(entity);
@@ -46,7 +47,7 @@ public class CourseController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response putUserInJSON(Course entity) {
+    public Response putUser(Course entity) {
         entity = mapper.editEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -54,7 +55,7 @@ public class CourseController {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response deleteUserInJSON(@PathParam("id") int id) {
+    public Response deleteUser(@PathParam("id") int id) {
         mapper.deleteEntity(id);
         return Response.status(200).build();
     }
@@ -62,8 +63,8 @@ public class CourseController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}/add-student/{studentId}")
-    public Response addStudentToCourseInJSON(@PathParam("id") int id, @PathParam("studentId") int studentId) {
-        mapper.addStudentToCourse(id, studentId);
-        return Response.status(200).build();
+    public Response addStudentToCourse(@PathParam("id") int id, @PathParam("studentId") int studentId) {
+        Student entity = mapper.addStudentToCourse(id, studentId);
+        return Response.status(200).entity(entity).build();
     }
 }

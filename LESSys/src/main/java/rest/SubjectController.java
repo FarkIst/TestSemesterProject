@@ -17,7 +17,7 @@ public class SubjectController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/all")
-    public Response getUsersInJSON() {
+    public Response getUsers() {
         Collection<Subject> entities = mapper.returnAllEntities();
         return Response.status(200).entity(entities).build();
     }
@@ -26,7 +26,7 @@ public class SubjectController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
-    public Response createUserInJSON(Subject entity) {
+    public Response createUser(Subject entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -34,7 +34,7 @@ public class SubjectController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response getUserInJSON(@PathParam("id") int id) throws IOException {
+    public Response getUser(@PathParam("id") int id) throws IOException {
         Subject entity = mapper.readEntity(id);
         ObjectMapper Obj = new ObjectMapper();
         String output = Obj.writeValueAsString(entity);
@@ -46,7 +46,7 @@ public class SubjectController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response putUserInJSON(Subject entity) {
+    public Response putUser(Subject entity) {
         entity = mapper.editEntity(entity);
         return Response.status(200).entity(entity).build();
     }
@@ -54,7 +54,7 @@ public class SubjectController {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public Response deleteUserInJSON(@PathParam("id") int id) {
+    public Response deleteUser(@PathParam("id") int id) {
         mapper.deleteEntity(id);
         return Response.status(200).build();
     }
