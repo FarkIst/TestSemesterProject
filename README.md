@@ -91,7 +91,7 @@ We started development of our system with a backend API with a combination of TD
 ### Language
 
 We used Java Maven for our backend API supported by Cucumber and JUNIT for testing.
-For our frontend we used Javascript with a REACTJS framework supported by Selenium for our tests. 
+For our frontend we used Javascript with a REACTJS framework supported by Jest/React-Testing-Library/Cypress for our tests. 
 
 ### Database
 
@@ -109,47 +109,6 @@ Course: classSem1B)
 * Schedule is what a lot of relationships in the database are built around.
 A schedule will have a relationship with a room(room has many schedules) and a schedule will have a course.
 
+#### Reflections 
 
-
-
-### Currently exists in project
-
-* Cucumber gherkin environment setup
-* 1 cucumber test (integration tests on user mappers, poorly done I think)
-* DB Script for adding data to test environment
-* Bunch of class methods, testing parameters and existing methods etc..
-* 1 parameter test on one of the helper methods
-* Some unit tests on some of the helpers
-* Some basic mappers (only user works completely I think)
-* All the data models are pretty much finished
-* API environment setup
-* Finish up a few more core mappers, for front end functionality
-* Finish up a few more mapping tests
-
-
-### TODO LIST
-
-* Code-coverage - good statistics on frontend and backend (Add to report)
-* Finish up test environment on java. Make sure it all runs together (both the JUNIT&CUCUMBER together) and has an output. Need a working strategy for test-db, currently it doesn't delete the db after each test, which will cause problems in the future - we might need a script to reset the DB
-* Add a decent assertion library to tests
-* Add another parameter test (?)
-* Add another cucumber test, better than the current one (?)
-* Add some test data (script is best, check the test persistence unit how to easily add it) to production DB
-* state testing and behavior testing for backend??
-* Test the API (important)
-* WRITE REPORT!!
-Why did we use test databases vs alteratives database testing frameworks, in-memory databases and mocking?
-Why did we use our assertion library?
-Create and use decision tables and state transition models in tests
-Why did we use travis-ci vs alternatives (google it)
-Team collaboration
-Test automation strategy (still working on this)
-Testability (more to come, maybe talk about getting a CI chain working is very hard in two languages java vs js problems)
-Design techniques (research this ASAP, we may need to add more to the project)
-
-#### Sean
-
-* Set up boilerplate for frontend (REACT-JS)
-* Set up CI chain for frontend (travis-ci)
-* Set up frontend test chain - Selenium if poss
-
+https://docs.google.com/document/d/1Y6LY2YDoqYwUT1l4rdHk4ZQ6WUH6u0lNPf2dAy2E3FI/edit?usp=sharing
