@@ -10,11 +10,11 @@ import units.SimpleUser;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 @PersistenceContext(unitName="test")
 public class ApiTest extends JerseyTest {
@@ -23,7 +23,10 @@ public class ApiTest extends JerseyTest {
     protected Application configure() {
         enable(TestProperties.LOG_TRAFFIC);
         enable(TestProperties.DUMP_ENTITY);
-        return new ResourceConfig(SimpleUserController.class);
+        ResourceConfig config = new ResourceConfig();
+        config.register(SimpleUserController.class);
+        config.register(new SimpleUserController("test"));
+        return config;
     }
 
     @Test
@@ -39,6 +42,7 @@ public class ApiTest extends JerseyTest {
         System.out.println(response.toString());
 
         assertEquals("should return status 200", 200, response.getStatus());
-        assertNotNull("Should return list", response.getEntity());
+        assertEquals("Should return json", MediaType.APPLICATION_JSON_TYPE, response.getMediaType());
+        assertEquals("Should return same entity id", user.getId(), response.readEntity(SimpleUser.class).getId());
     }
 }

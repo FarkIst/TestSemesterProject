@@ -12,7 +12,15 @@ import java.util.Collection;
 
 @Path("/schedules/")
 public class ScheduleController {
-    ScheduleMapper mapper = new ScheduleMapper();
+    ScheduleMapper mapper;
+
+    public ScheduleController() {
+        mapper = new ScheduleMapper();
+    }
+
+    public ScheduleController(String PU) {
+        mapper = new ScheduleMapper(PU);
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -25,7 +33,6 @@ public class ScheduleController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-
     public Response createUser(Schedule entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();

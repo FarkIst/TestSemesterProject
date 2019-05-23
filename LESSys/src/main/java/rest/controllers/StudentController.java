@@ -13,7 +13,15 @@ import java.util.Collection;
 
 @Path("/students/")
 public class StudentController {
-    StudentMapper mapper = new StudentMapper();
+    StudentMapper mapper;
+
+    public StudentController() {
+        mapper = new StudentMapper();
+    }
+
+    public StudentController(String PU) {
+        mapper = new StudentMapper(PU);
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -26,7 +34,6 @@ public class StudentController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-
     public Response createUser(Student entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();

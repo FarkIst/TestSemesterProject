@@ -12,7 +12,15 @@ import java.util.Collection;
 
 @Path("/locations/")
 public class LocationController {
-    LocationMapper mapper = new LocationMapper();
+    LocationMapper mapper;
+
+    public LocationController() {
+        mapper = new LocationMapper();
+    }
+
+    public LocationController(String PU) {
+        mapper = new LocationMapper(PU);
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -25,7 +33,6 @@ public class LocationController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-
     public Response createUser(Location entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();

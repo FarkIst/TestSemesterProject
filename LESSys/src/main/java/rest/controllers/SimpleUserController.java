@@ -12,7 +12,15 @@ import java.util.Collection;
 
 @Path("/simple-users/")
 public class SimpleUserController {
-    SimpleUserMapper mapper = new SimpleUserMapper();
+    SimpleUserMapper mapper;
+
+    public SimpleUserController() {
+        mapper = new SimpleUserMapper();
+    }
+
+    public SimpleUserController(String PU) {
+        mapper = new SimpleUserMapper(PU);
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -25,7 +33,6 @@ public class SimpleUserController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-
     public Response createUser(SimpleUser entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();
