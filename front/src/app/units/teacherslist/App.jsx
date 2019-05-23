@@ -29,7 +29,11 @@ export class App extends Component {
     return updating ? (
       <Div> Loading </Div>
     ) : (
-      <EntityTable COLUMNS={COLUMNS} DATA={teachingstaff} />
+      <EntityTable
+        COLUMNS={COLUMNS}
+        DATA={teachingstaff}
+        title={'TeachersList'}
+      />
     );
   }
 }

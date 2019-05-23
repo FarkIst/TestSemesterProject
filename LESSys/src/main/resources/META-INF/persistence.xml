@@ -21,9 +21,9 @@
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/less?serverTimezone=UTC"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.connection.username" value="root"/>
-            <property name="hibernate.connection.password" value="root"/>
+            <property name="hibernate.connection.password" value="sean666"/>
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>

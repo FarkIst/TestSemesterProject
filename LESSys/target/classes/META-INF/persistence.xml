@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
-<persistence-unit name="less">
-    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>units.Location</class>
-    <class>units.Course</class>
-    <class>units.User</class>
-    <class>units.Payment</class>
-    <class>units.Semester</class>
-    <class>units.Subject</class>
-    <class>units.Location</class>
-    <class>units.School</class>
-    <class>units.Schedule</class>
-    <class>units.NonTeachingStaff</class>
-    <class>units.TeachingStaff</class>
-    <class>units.Staff</class>
-    <class>units.Room</class>
-    <class>units.Student</class>
-    <properties>
-        <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/less"/>
-        <property name="hibernate.connection.driver_class" value= "com.mysql.jdbc.Driver" />
-        <property name="hibernate.hbm2ddl.auto" value="validate"/>
-        <property name="hibernate.connection.username" value="root"/>
-        <property name="hibernate.connection.password" value="sean666"/>
-        <property name="hibernate.archive.autodetection" value="class"/>
-        <property name="hibernate.show_sql" value="true"/>
-        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect" />
-        <property name="hibernate.format_sql" value="true"/>
-    </properties>
-</persistence-unit>
+    <persistence-unit name="less">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>units.Location</class>
+        <class>units.Course</class>
+        <class>units.User</class>
+        <class>units.Payment</class>
+        <class>units.Semester</class>
+        <class>units.Subject</class>
+        <class>units.Location</class>
+        <class>units.School</class>
+        <class>units.Schedule</class>
+        <class>units.NonTeachingStaff</class>
+        <class>units.TeachingStaff</class>
+        <class>units.Staff</class>
+        <class>units.Room</class>
+        <class>units.Student</class>
+        <class>units.SimpleUser</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/less?serverTimezone=UTC"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="sean666"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
 </persistence>

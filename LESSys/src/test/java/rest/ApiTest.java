@@ -7,6 +7,7 @@ import org.junit.Test;
 import rest.controllers.SimpleUserController;
 import units.SimpleUser;
 
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
@@ -15,6 +16,7 @@ import java.util.Calendar;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+@PersistenceContext(unitName="test")
 public class ApiTest extends JerseyTest {
 
     @Override
