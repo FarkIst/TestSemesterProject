@@ -12,7 +12,15 @@ import java.util.Collection;
 
 @Path("/subjects/")
 public class SubjectController {
-    SubjectMapper mapper = new SubjectMapper();
+    SubjectMapper mapper;
+
+    public SubjectController() {
+        mapper = new SubjectMapper();
+    }
+
+    public SubjectController(String PU) {
+        mapper = new SubjectMapper(PU);
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -25,7 +33,6 @@ public class SubjectController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-
     public Response createUser(Subject entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();

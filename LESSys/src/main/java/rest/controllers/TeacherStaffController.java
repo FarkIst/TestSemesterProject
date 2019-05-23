@@ -12,7 +12,15 @@ import java.util.Collection;
 
 @Path("/teachers/")
 public class TeacherStaffController {
-    TeacherStaffMapper mapper = new TeacherStaffMapper();
+    TeacherStaffMapper mapper;
+
+    public TeacherStaffController() {
+        mapper = new TeacherStaffMapper();
+    }
+
+    public TeacherStaffController(String PU) {
+        mapper = new TeacherStaffMapper(PU);
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -25,7 +33,6 @@ public class TeacherStaffController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-
     public Response createUser(TeachingStaff entity) {
         entity = mapper.createEntity(entity);
         return Response.status(200).entity(entity).build();
